@@ -2,6 +2,7 @@
 #define BINARYSEARCHTREE
 
 #include "TreeInterface.h"
+#include "queue.h"
 #include "Node.h"
 
 using namespace std;
@@ -45,6 +46,8 @@ class BinarySearchTree: public TreeInterface<item, Node<item>>{
 	private:
 		bool checkBST(Node<item>* subtree) noexcept;
 		bool removeNode(Node<item>* delete_node);
+		
+		queue<Node<item>*> node_queue;
 };
 #include "BinarySearchTree.hpp"
 #endif

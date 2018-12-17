@@ -129,7 +129,42 @@ void BinarySearchTree<item>::inorderTraversal(Node<item>* subtree, void visit(it
 
 template<typename item>
 void BinarySearchTree<item>::levelorderTraversal(Node<item>* subtree, void visit(item&)){
-
+	if(nullptr != subtree){
+		Node<item>* tracer = subtree;
+		node_queue.push(nullptr);
+		
+		while(true){
+			item getter = tracer->getItem();
+			visit(getter);
+			
+			if(nullptr != tracer->getLeftChild()){
+				node_queue.push(tracer->getLeftChild());
+			}
+			
+			if(nullptr != tracer->getRightChild()){
+				node_queue.push(tracer->getRightChild());
+			}
+			
+			if(nullptr == node_queue.peek()){
+				if(1 == node_queue.size()){
+					break;
+				}
+				else{
+					cout<<"| ";
+				}
+			}
+			
+			if(nullptr == node_queue.peek()){
+				node_queue.push(nullptr);
+				node_queue.pop();
+			}
+			
+			tracer = node_queue.peek();
+			node_queue.pop();
+		}
+		
+		node_queue.pop();
+	}
 }
 
 template<typename item>

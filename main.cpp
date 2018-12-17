@@ -3,6 +3,10 @@
 
 using namespace std;
 
+static void print(int& value){
+	cout<<value<<" ";
+}
+
 int main(int argc, char** argv){
 
 	AVLTree<int> fingers_crossed;
@@ -24,8 +28,14 @@ int main(int argc, char** argv){
 			cout<<"YEEEERRRRRRRRR"<<endl;
 		}
 		
-	cout<<fingers_crossed.findMin()<<endl;
-	cout<<fingers_crossed.findMax()<<endl;
+	fingers_crossed.preorder(print);
+		cout<<endl;
+	fingers_crossed.postorder(print);
+		cout<<endl;
+	fingers_crossed.inorder(print);
+		cout<<endl;
+	fingers_crossed.levelorder(print);
+		cout<<endl;
 	
 	//fingers_crossed.remove(6);
 	//fingers_crossed.remove(4);
