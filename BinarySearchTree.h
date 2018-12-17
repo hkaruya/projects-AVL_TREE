@@ -19,8 +19,10 @@ class BinarySearchTree: public TreeInterface<item, Node<item>>{
 		item findMax();
 		
 		virtual bool remove(item value);
-		virtual bool removeMin();
-		virtual bool removeMax();
+		bool removeMin();
+		bool removeMax();
+		
+		bool BSTProperties() noexcept;
 	protected:
 		void clearTree(Node<item>* subtree) noexcept;
 		
@@ -36,7 +38,12 @@ class BinarySearchTree: public TreeInterface<item, Node<item>>{
 		Node<item>* nodeWithValue(Node<item>* subtree, item value);
 		
 		int getHeight(Node<item>* subtree) noexcept;
+		bool updateNode(Node<item>* subtree) noexcept;
+		
+		Node<item>* detachLeftTree(Node<item>* subtree);
+		Node<item>* detachRightTree(Node<item>* subtree);
 	private:
+		bool checkBST(Node<item>* subtree) noexcept;
 		bool removeNode(Node<item>* delete_node);
 };
 #include "BinarySearchTree.hpp"

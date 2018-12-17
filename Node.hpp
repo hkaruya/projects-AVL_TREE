@@ -46,14 +46,18 @@ template<typename item>
 void Node<item>::setLeftChild(Node<item>* new_child) noexcept{
 	children[0] = new_child;
 	
-	new_child->setParent(this);
+	if(nullptr != new_child){
+		new_child->setParent(this);
+	}
 }
 
 template<typename item>
 void Node<item>::setRightChild(Node<item>* new_child) noexcept{
 	children[1] = new_child; 
 	
-	new_child->setParent(this);
+	if(nullptr != new_child){
+		new_child->setParent(this); 
+	}
 }
 
 template<typename item>

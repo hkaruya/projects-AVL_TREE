@@ -37,8 +37,7 @@ class TreeInterface{
 		virtual void inorderTraversal(node* subtree, void visit(item&)) = 0;
 		virtual void levelorderTraversal(node* subtree, void visit(item&)) = 0;
 		
-		virtual node* detachLeftTree(node* subtree);
-		virtual node* detachRightTree(node* subtree);
+		virtual bool updateNode(node* subtree) noexcept = 0;
 		
 		node* root_ptr = nullptr; 
 };

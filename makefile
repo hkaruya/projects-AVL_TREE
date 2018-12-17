@@ -1,5 +1,5 @@
 objects = main.o TreeError.o NodeError.o
-template_files = NodeInterface.h NodeInterface.hpp Node.h Node.hpp TreeInterface.h TreeInterface.hpp BinarySearchTree.h BinarySearchTree.hpp
+template_files = NodeInterface.h NodeInterface.hpp Node.h Node.hpp TreeInterface.h TreeInterface.hpp BinarySearchTree.h BinarySearchTree.hpp AVLTree.h AVLTree.hpp
 FLAGS = -std=c++11 -g -Wall
 
 AVL_TREE: $(objects)
