@@ -17,6 +17,8 @@ class Node: public NodeInterface<item>{
 		//@param: new_item
 		Node(item new_item);
 		
+		~Node(){}
+		
 		//Initializes class with item and children as parameter
 		//@post: left child set to new_left
 		//@post: right child set to new_right
@@ -55,7 +57,12 @@ class Node: public NodeInterface<item>{
 		
 		//@return: true if both children are nullptr, false otherwise
 		bool isLeaf() noexcept;
+		
+		//Detaches given child 
+		//@return: true once detached, false otherwise
+		bool detachChild(Node<item>* child);
 	private:
+		
 		Node<item>* children[2];
 		
 		Node<item>* parent = nullptr;

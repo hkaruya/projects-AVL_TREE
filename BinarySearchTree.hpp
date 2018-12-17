@@ -303,6 +303,12 @@ bool BinarySearchTree<item>::checkBST(Node<item>* subtree) noexcept{
 
 template<typename item>
 bool BinarySearchTree<item>::removeNode(Node<item>* delete_node){
+	if((this->root_ptr == delete_node) && (this->root_ptr->isLeaf())){
+		this->root_ptr = nullptr; 
+	}
+	
+	Node<item>* parent = nullptr;
+	
 	if(delete_node->isFull()){
 		Node<item>* min_of_right = findMinNode(delete_node->getRightChild());
 		item new_value = min_of_right->getItem();
@@ -311,12 +317,13 @@ bool BinarySearchTree<item>::removeNode(Node<item>* delete_node){
 		return removeNode(min_of_right);
 	}
 	else{
+		parent = delete_node->getParent();
 		if(!(delete_node->isLeaf())){
-			Node<item>* parent = delete_node->getParent();
 		
 			if(nullptr == delete_node->getLeftChild()){
 				if(nullptr == parent){
 					this->root_ptr = delete_node->getRightChild();
+					this->root_ptr->setParent(nullptr);
 				}
 				else{
 					if(delete_node == parent->getLeftChild()){
@@ -330,6 +337,7 @@ bool BinarySearchTree<item>::removeNode(Node<item>* delete_node){
 			else{
 				if(nullptr == parent){
 					this->root_ptr = delete_node->getLeftChild();
+					this->root_ptr->setParent(nullptr);
 				}
 				else{
 					if(delete_node == parent->getLeftChild()){
@@ -343,6 +351,9 @@ bool BinarySearchTree<item>::removeNode(Node<item>* delete_node){
 			}
 		}
 		
+		if(nullptr != parent){
+			parent->detachChild(delete_node);
+		}
 		delete delete_node;
 		return true;  
 	}

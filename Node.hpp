@@ -79,3 +79,25 @@ template<typename item>
 bool Node<item>::isLeaf() noexcept{
 	return ((nullptr == children[0])&&(nullptr == children[1]));
 }
+
+template<typename item>
+bool Node<item>::detachChild(Node<item>* child){
+	if(nullptr == child){
+		return false;
+	}
+	
+	if(children[0] == child){
+		children[0] = nullptr;
+		child->setParent(nullptr);
+		return true;
+	}
+	
+	if(children[1] == child){
+		children[1] = nullptr;
+		child->setParent(nullptr);
+		return true;
+	}
+	
+	return false; 
+	
+}
