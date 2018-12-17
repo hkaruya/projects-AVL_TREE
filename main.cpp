@@ -17,6 +17,11 @@ int main(int argc, char** argv){
 		//cout<<endl;
 	fingers_crossed.insert(2);
 		//cout<<endl;
+	
+	fingers_crossed.removeMin();
+	fingers_crossed.removeMin();
+	fingers_crossed.removeMin();
+	/*
 	fingers_crossed.insert(6);
 		//cout<<endl;
 	fingers_crossed.insert(5);
@@ -39,6 +44,7 @@ int main(int argc, char** argv){
 	
 	//fingers_crossed.remove(6);
 	//fingers_crossed.remove(4);
+	*/
 
 return (0);
 }

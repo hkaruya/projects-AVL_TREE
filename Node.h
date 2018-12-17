@@ -8,12 +8,16 @@ using namespace std;
 template<typename item>
 class Node: public NodeInterface<item>{
 	public:
+		//Initializes class with no parameter; Default constructor
+		//@post: children and parent sent to nullptr
 		Node();
 	
 		//Initializes class with item as parameter
 		//@post: node_item is set to new_item
 		//@param: new_item
 		Node(item new_item);
+		
+		~Node(){}
 		
 		//Initializes class with item and children as parameter
 		//@post: left child set to new_left
@@ -30,6 +34,7 @@ class Node: public NodeInterface<item>{
 		//@return: right child
 		Node<item>* getRightChild() noexcept;
 		
+		//@return: parent
 		Node<item>* getParent() noexcept;
 		
 		//Sets left child to given parameter
@@ -40,15 +45,24 @@ class Node: public NodeInterface<item>{
 		//@post: right child is new_child
 		void setRightChild(Node<item>* new_child) noexcept;
 		
+		//Sets parent to given parameter
+		//@post: parent is set to new_parent
 		void setParent(Node<item>* new_parent) noexcept; 
 		
 		//Throws error since function isn't supported
 		int getRank();
 		
+		//@return: true if none of the children are nullptr, false otherwise
 		bool isFull() noexcept;
 		
+		//@return: true if both children are nullptr, false otherwise
 		bool isLeaf() noexcept;
+		
+		//Detaches given child 
+		//@return: true once detached, false otherwise
+		bool detachChild(Node<item>* child);
 	private:
+		
 		Node<item>* children[2];
 		
 		Node<item>* parent = nullptr;
