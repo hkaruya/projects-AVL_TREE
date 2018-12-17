@@ -163,7 +163,7 @@ void BinarySearchTree<item>::levelorderTraversal(Node<item>* subtree, void visit
 			node_queue.pop();
 		}
 		
-		node_queue.pop();
+		node_queue.reset();
 	}
 }
 
