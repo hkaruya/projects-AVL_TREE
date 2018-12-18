@@ -29,37 +29,60 @@ void TestSuite<item>::userInterface(){
 template<typename item>
 void TestSuite<item>::runTest(){
 	int counter = 0; 
-	while(counter < (2*NUMBER_OF_TESTS)){
-		item value = randomizer_function(NUMBER_OF_TESTS*MULTIPLIER);
-		if(data_structure->insert(value)){
-			if(!(data_structure->assert())){
-				throw TestError("~DATA STRUCTURE PROPERTIES BROKEN~");
+	const int split = 10;
+	int progress_bar = (2*NUMBER_OF_TESTS)/split;
+	cout<<"INSERTION TEST: [";
+	cout.flush();
+	while(counter < split){
+		for(int i = 0; i < progress_bar; i++){
+			item value = randomizer_function(NUMBER_OF_TESTS*MULTIPLIER);
+			if(data_structure->insert(value)){
+				if(!(data_structure->assert())){
+					cout<<"]"<<endl;
+					throw TestError("~DATA STRUCTURE PROPERTIES BROKEN~");
+				}
+				if(!(data_structure->find(value))){
+					cout<<"]"<<endl;
+					throw TestError("~ITEM NOT PROPERLY INSERTED TO TREE AND/OR FIND FUNCTION ERROR~");
+				}
 			}
-			if(!(data_structure->find(value))){
-				throw TestError("~ITEM NOT PROPERLY INSERTED TO TREE AND/OR FIND FUNCTION ERROR~");
+			else{
+				i--;
 			}
-			counter++;
 		}
+		cout<<"|";
+		cout.flush();
+		counter++;
 	}
 	
-	cout<<"INSERTION TEST: [DONE]"<<endl;
+	cout<<"]"<<endl;
 	
 	counter = 0;
-	while(counter < NUMBER_OF_TESTS){
-		item value = randomizer_function(NUMBER_OF_TESTS*MULTIPLIER);
-		
-		if(data_structure->remove(value)){
-			if(!(data_structure->assert())){
-				throw TestError("~DATA STRUCTURE PROPERTIES BROKEN~");
+	cout<<"DELETION TEST: [";
+	cout.flush();
+	while(counter < split){
+		for(int i = 0; i < (NUMBER_OF_TESTS/split); i++){
+			item value = randomizer_function(NUMBER_OF_TESTS*MULTIPLIER);
+			if(data_structure->remove(value)){
+				if(!(data_structure->assert())){
+					cout<<"]"<<endl;
+					throw TestError("~DATA STRUCTURE PROPERTIES BROKEN~");
+				}
+				if(data_structure->find(value)){
+					cout<<"]"<<endl;
+					throw TestError("~ITEM NOT PROPERLY DELETED FROM TREE AND/OR FIND FUNCTION ERROR~");
+				}
 			}
-			if(data_structure->find(value)){
-				throw TestError("~ITEM NOT PROPERLY DELETED FROM TREE AND/OR FIND FUNCTION ERROR~");
+			else{
+				i--;
 			}
-			counter++;
 		}
+		cout<<"|";
+		cout.flush();
+		counter++;
 	}
 	
-	cout<<"DELETION TEST: [DONE]"<<endl;
+	cout<<"]"<<endl;
 	
 	
 }
