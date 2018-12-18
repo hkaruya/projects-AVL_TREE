@@ -14,6 +14,8 @@ class AVLTree: public BinarySearchTree<item>{
 		
 		virtual bool remove(item value);
 		
+		virtual bool assert() noexcept;
+		
 		//Checks AVL tree properties
 		//@return: true if tree is balanced and BST, false otherwise
 		bool AVLProperties() noexcept;

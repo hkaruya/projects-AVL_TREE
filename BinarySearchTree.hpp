@@ -79,6 +79,11 @@ bool BinarySearchTree<item>::removeMax(){
 }
 
 template<typename item>
+bool BinarySearchTree<item>::assert() noexcept{
+	return (BSTProperties());
+}
+
+template<typename item>
 bool BinarySearchTree<item>::BSTProperties() noexcept{
 	return checkBST(this->root_ptr);
 }

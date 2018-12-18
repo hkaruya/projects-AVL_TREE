@@ -28,6 +28,11 @@ bool AVLTree<item>::remove(item value){
 }
 
 template<typename item>
+bool AVLTree<item>::assert() noexcept{
+	return (AVLProperties());
+}
+
+template<typename item>
 bool AVLTree<item>::AVLProperties() noexcept{
 	return ((this->BSTProperties()) && isTreeBalanced(this->root_ptr));
 }
@@ -186,6 +191,10 @@ bool AVLTree<item>::isBalanced(Node<item>* subtree) noexcept{
 
 template<typename item>
 Node<item>* AVLTree<item>::deleteStartingPoint(Node<item>* delete_node){
+	if(nullptr == delete_node){
+		return delete_node;	
+	}
+	
 	if(delete_node->isFull()){
 		return(this->findMinNode(delete_node->getRightChild())->getParent());
 	}

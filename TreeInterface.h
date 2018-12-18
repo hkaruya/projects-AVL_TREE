@@ -1,12 +1,13 @@
 #ifndef TREEINTERFACE_H
 #define TREEINTERFACE_H
 
+#include "TestSuiteInterface.h"
 #include "TreeError.h"
 
 using namespace std;
 
 template<typename item, typename node>
-class TreeInterface{
+class TreeInterface: public TestSuiteInterface<item>{
 	public: 
 		//Virtual Deconstructor, helps free up memory allocated in heap
 		virtual ~TreeInterface(){}
@@ -14,19 +15,10 @@ class TreeInterface{
 		//Default constructor
 		TreeInterface();
 		
-		//@return: true if tree is empty, false otherwise
 		bool isEmpty() const noexcept; 
 		
-		//Inserts item into tree
-		//@post: item is inserted into tree
-		//@param: value
-		//@return: true once item is inserted, false otherwise
 		virtual bool insert(item value) noexcept = 0; 
 		
-		//Check tree if value is an element
-		//@param: value 
-		//@return: true if element in tree, false otherwise
-		//@throw: TreeError, if tree is empty
 		virtual bool find(item value) = 0;
 		
 		//@return: minimum elelent in tree
@@ -37,11 +29,6 @@ class TreeInterface{
 		//@throw: TreeError, if tree is empty
 		virtual item findMax() = 0;
 		
-		//Removes value if element in tree while still 
-			//maintaining tree properties
-		//@post: value is removed from tree
-		//@param: value
-		//@return: true once item is removed, false otherwise
 		virtual bool remove(item value) = 0;
 		
 		//@return: true once minimum item is removed, false otherwise
@@ -49,6 +36,8 @@ class TreeInterface{
 		
 		//@return: true once maximum item is removed, false otherwise
 		virtual bool removeMax() = 0;
+		
+		virtual bool assert() noexcept = 0;
 		
 		//Performs preorder traversal applying visit function to each node
 		//@param: visit(item&)

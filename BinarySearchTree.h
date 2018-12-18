@@ -26,6 +26,8 @@ class BinarySearchTree: public TreeInterface<item, Node<item>>{
 		bool removeMin();
 		bool removeMax();
 		
+		virtual bool assert() noexcept;
+		
 		//Checks Binary Search Tree Properties
 		//@return: true if binary search tree (less than in left subtree, else on right)
 			//false otherwise
